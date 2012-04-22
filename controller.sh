@@ -2,10 +2,8 @@
 SCRIPT=$1
 IP=$2
 WORKERS=$3
-x=1
-while [ $x -le $WORKERS ]
+for (( i=1; i <= ${WORKERS}; i++ )) 
 do
-  echo "starting $x node"
-  node ${SCRIPT}.js $IP $x & 
-  x=$(($x+1))
+  echo "starting $i node"
+  node ${SCRIPT}.js $IP $i & 
 done

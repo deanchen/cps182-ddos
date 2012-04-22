@@ -30,7 +30,7 @@
     var _results;
     _results = [];
     while (true) {
-      if (s - c > 100) {
+      if (s - c > 10000) {
         break;
       }
       _results.push(query(i++));

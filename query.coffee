@@ -18,7 +18,7 @@ i = 0
 
 send = ()->
     while true
-        if s - c > 100 then break
+        if s - c > 10000 then break
         query i++
 
 send()

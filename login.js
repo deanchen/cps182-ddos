@@ -29,18 +29,18 @@
 
   postData = function(i) {
    var data = querystring.stringify({
-   comment: 'abcd hey man ' + i,
-   submit: 'Post Comment',
-   comment_post_ID: '5',
-   comment_parent: '0',
-   author: 'bob tarel'+i,
-   email: 'bob'+i+'@tarel.com',
+   log: i+'thisismyusername'+i,
+   pwd: i+'thisismypass'+i,
+   rememberme: 'forever',
+   "wp-submit": 'Log In',
+   redirect_to:'http://10.144.3.211/wp-admin/' ,
+   testcookie: '1'
   });
 
   options = {
     host: '10.144.3.211',
     port: 80,
-    path: '/wp-comments-post.php',
+    path: '/wp-login.php',
     method: 'POST',
     headers: {
        'Content-Type': 'application/x-www-form-urlencoded',
@@ -53,6 +53,10 @@
       var lastChunk = "";
 
       res.setEncoding('utf8');
+
+     // res.on('data',function(chunk) {
+     //     console.log(chunk);
+     // });
 
       res.on('end', function(){
         c ++;

@@ -4,6 +4,7 @@ var args = process.argv.splice(2);
 var ip = args[0];
 var worker = args[1];
 
+process.on('uncaughtException', function(exception) {});
 
   var http = require('http');
   var querystring=require('querystring');

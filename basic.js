@@ -4,7 +4,7 @@ var args = process.argv.splice(2);
 var ip = args[0];
 var worker = args[1]; 
 
-process.on('uncaughtException', function(exception) {console.log(new Date(), "server down")});
+process.on('uncaughtException', function(exception) {console.log(exception),console.log(new Date(), "server down")});
 
   var c, http, i, options, query, s, send;
 
@@ -22,7 +22,10 @@ process.on('uncaughtException', function(exception) {console.log(new Date(), "se
   query = function() {
     options.path = "/";
     s++;
-    return http.get(options);
+    return http.get(options, function(res) {
+        c++;
+        return send();
+    });
   };
 
   i = 0;

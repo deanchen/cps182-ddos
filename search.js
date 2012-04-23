@@ -19,18 +19,6 @@ var query = function(param) {
     options.path = "/?s=" + worker + "w" + i;
     s++;
     return http.get(options, function(res) {
-        /*
-        var pageData;
-        pageData = "";
-        res.setEncoding('utf8');
-        res.on('data', function(chunk) {
-            return pageData += chunk;
-        });
-        res.on('end', function() {
-            return console.log(pageData);
-        });
-        console.log(param);
-        */
         c++;
         return send();
     });
@@ -39,13 +27,12 @@ var query = function(param) {
 var i = 0;
 
 var send = function() {
-    while (false) {
+    while (true) { 
       if (s - c > 10000) {
         break;
       }
       query(i++);
     }
-    return query(i++);
 };
 
 send();

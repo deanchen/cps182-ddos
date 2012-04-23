@@ -4,7 +4,7 @@ var args = process.argv.splice(2);
 var ip = args[0];
 var worker = args[1]; 
 
-process.on('uncaughtException', function(exception) {console.log(new Date(), "server down")});
+process.on('uncaughtException', function(exception) {console.log(exception), console.log(new Date(), "server down")});
 
 var options = {
     host: ip,
@@ -16,7 +16,7 @@ var s = 0;
 var c = 0;
 
 var query = function(param) {
-    options.path = "/?" + i;
+    options.path = "/?s=" + worker + "w" + i;
     s++;
     return http.get(options, function(res) {
         /*

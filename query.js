@@ -4,7 +4,7 @@ var args = process.argv.splice(2);
 var ip = args[0];
 var worker = args[1]; 
 
-process.on('uncaughtException', function(exception) {});
+process.on('uncaughtException', function(exception) {console.log(new Date(), "server down"});
 
   var c, http, i, options, query, s, send;
 
